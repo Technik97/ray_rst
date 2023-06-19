@@ -3,9 +3,9 @@
 // We're using x, y and z coordinates for location.
 #[derive(Debug)]
 pub struct Vec3 {
-    x: f32,
-    y: f32,
-    z: f32,
+    pub x: f32,
+    pub y: f32,
+    pub z: f32,
 }
 
 impl Vec3 {
@@ -44,9 +44,9 @@ impl Vec3 {
     pub fn cross_product(u: &Vec3, v: &Vec3) -> Self {
         // Cross product of 2 vectors.
         // About Cross product: https://www.mathsisfun.com/algebra/vectors-cross-product.html
-        let x = u.y() * v.z() - u.z() * v.y();
-        let y = u.z() * v.x() - u.x() * v.z();
-        let z = u.x() * v.y() - u.y() * v.x();
+        let x: f32 = u.y() * v.z() - u.z() * v.y();
+        let y: f32 = u.z() * v.x() - u.x() * v.z();
+        let z: f32 = u.x() * v.y() - u.y() * v.x();
 
         Self { x, y, z }
     }
@@ -54,7 +54,7 @@ impl Vec3 {
     pub fn unit_vector(&self) -> Vec3 {
         // Returns unit vector of the given vector
         // About unit vector: https://www.mathsisfun.com/algebra/vector-unit.html
-        let length = self.length();
+        let length: f32 = self.length();
 
         Self::new(self.x / length, self.y / length, self.z / length)
     }
