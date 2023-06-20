@@ -1,5 +1,5 @@
 [package]
-name = "ray"
+name = "ray_tracer"
 version = "0.1.0"
 edition = "2021"
 
@@ -10,6 +10,6 @@ path = "src/lib.rs"
 
 [[bin]]
 path = "src/main.rs"
-name = "ray"
+name = "ray_tracer"
 
 [dependencies]

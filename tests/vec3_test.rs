@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod test {
-    use ray::core::vec3::Vec3;
+    use ray_tracer::core::vec3::Vec3;
 
     #[test]
     fn test_new() {
