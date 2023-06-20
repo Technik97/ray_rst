@@ -1,7 +1,9 @@
+use std::{ops::{Mul, Add}};
+
 
 // Vec3 struct represents vector in 3D space
 // We're using x, y and z coordinates for location.
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone)]
 pub struct Vec3 {
     pub x: f32,
     pub y: f32,
@@ -57,5 +59,35 @@ impl Vec3 {
         let length: f32 = self.length();
 
         Self::new(self.x / length, self.y / length, self.z / length)
+    }
+}
+
+
+impl Mul<f32> for Vec3 {
+    // Implementing Mul trait for Vec3
+    // Because we'll be going to multiply a vector in at() fn 
+    // which returns the location of a vector.
+    type Output = Vec3;
+
+    fn mul(self, rhs: f32) -> Self::Output {
+        Vec3 {
+            x: self.x() * rhs,
+            y: self.y() * rhs,
+            z: self.z() * rhs
+        }
+    }
+}
+
+impl Add for Vec3 {
+    // Implementing Add trait for Vec3
+    // Because we'll be going to add 2 vectors  
+    type Output = Vec3;
+
+    fn add(self, rhs: Self) -> Self::Output {
+        Vec3 {
+            x: self.x() + rhs.x(),
+            y: self.y() + rhs.y(),
+            z: self.z() + rhs.z(),
+        }    
     }
 }
