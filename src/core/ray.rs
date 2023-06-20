@@ -1,5 +1,8 @@
 use crate::core::vec3::Vec3;
 
+// ray is a function P(t) = A + tb.
+// where P is a 3D position along a line in 3D.
+// t is a real number.
 #[derive(Debug)]
 pub struct Ray {
     pub origin: Vec3,
