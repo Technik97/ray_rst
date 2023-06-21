@@ -1,9 +1,8 @@
 use std::{ops::{Mul, Add}};
 
-
 // Vec3 struct represents vector in 3D space
 // We're using x, y and z coordinates for location.
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, serde::Deserialize)]
 pub struct Vec3 {
     pub x: f32,
     pub y: f32,

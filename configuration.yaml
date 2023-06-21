@@ -1,0 +1,11 @@
+scene:
+  aspect_width: 16.0
+  aspect_height: 9.0
+  image_width: 480
+origin:
+  x: 0
+  y: 0
+  z: 0
+camera:
+  viewport_height: 2.0
+  focal_length: 1.0
