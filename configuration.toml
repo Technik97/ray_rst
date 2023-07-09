@@ -1,0 +1,5 @@
+image_width = 640
+aspect_width = 16.0
+aspect_height = 9.0
+focal_length = 1.0
+viewport_height = 2.0
