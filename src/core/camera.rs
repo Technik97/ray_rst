@@ -1,4 +1,5 @@
 use super::{vec3::Vec3, img::Image};
+use crate::configuration;
 
 #[derive(Debug)]
 pub struct Camera {
@@ -18,7 +19,10 @@ impl Camera {
     }
 
     pub fn viewport_height() -> f32 {
-        2.0
+        let config = configuration::get_configuration().unwrap();
+        let viewport_height = config.get("viewport_height").unwrap().parse::<f32>().unwrap();
+
+        viewport_height
     }
 
     pub fn viewport_width() -> f32 {
