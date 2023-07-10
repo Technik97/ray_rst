@@ -45,7 +45,10 @@ impl Camera {
     }
 
     pub fn focal_length() -> f32 {
-        1.0
+        let config = configuration::get_configuration().unwrap();
+        let focal_length = config.get("focal_length").unwrap().parse::<f32>().unwrap();
+        
+        focal_length
     }
 
     pub fn lower_left_corner() -> Vec3 {
