@@ -25,7 +25,7 @@ mod test {
 
         let r: Ray = Ray::new(origin, direction);
 
-        let at = r.at(1.0);
+        let at = r.point_at_parameter(1.0);
 
         assert_eq!(at.x(), 3.0);
         assert_eq!(at.y(), 3.0);
