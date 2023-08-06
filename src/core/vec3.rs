@@ -2,7 +2,7 @@ use std::{ops::{Mul, Add, Sub, Div}};
 
 // Vec3 struct represents vector in 3D space
 // We're using x, y and z coordinates for location.
-#[derive(Debug, Copy, Clone, serde::Deserialize)]
+#[derive(Debug, Default, Copy, Clone, serde::Deserialize)]
 pub struct Vec3 {
     pub x: f32,
     pub y: f32,
@@ -39,7 +39,7 @@ impl Vec3 {
     pub fn dot_product(u: &Vec3, v: &Vec3) -> f32 {
         // Dot product of 2 vectors.
         // About Dot product: https://www.mathsisfun.com/algebra/vectors-dot-product.html
-        (u.x() * v.x()) + (u.y() * v.y()) + (u.z() + v.z())
+        (u.x() * v.x()) + (u.y() * v.y()) + (u.z() * v.z())
     }
 
     pub fn cross_product(u: &Vec3, v: &Vec3) -> Self {
