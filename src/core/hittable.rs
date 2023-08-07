@@ -11,5 +11,5 @@ pub struct HitRecord {
 
 pub trait Hittable {
     fn hit(&self, ray: &Ray, tmin: f32, tmax: f32, rec: &mut HitRecord) -> bool ;
-    fn set_face_noraml(self, ray: &Ray, outward_noraml: &Vec3);
+    fn set_face_normal(self, ray: &Ray, outward_noraml: &Vec3);
 }
