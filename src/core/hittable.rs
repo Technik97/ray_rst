@@ -5,9 +5,11 @@ use super::ray::Ray;
 pub struct HitRecord {
     pub t: f32,
     pub p: Vec3,
-    pub normal: Vec3
+    pub normal: Vec3,
+    pub front_face: bool
 }
 
 pub trait Hittable {
     fn hit(&self, ray: &Ray, tmin: f32, tmax: f32, rec: &mut HitRecord) -> bool ;
+    fn set_face_noraml(self, ray: &Ray, outward_noraml: &Vec3);
 }
