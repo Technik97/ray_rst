@@ -1,4 +1,4 @@
-use std::{ops::{Mul, Add, Sub, Div}};
+use std::{ops::{Mul, Add, Sub, Div, Neg}};
 
 // Vec3 struct represents vector in 3D space
 // We're using x, y and z coordinates for location.
@@ -111,6 +111,18 @@ impl Div<f32> for Vec3 {
             x: self.x() / rhs,
             y: self.y() / rhs,
             z: self.z() / rhs,
+        }
+    }
+}
+
+impl Neg for Vec3 {
+    type Output = Vec3;
+
+    fn neg(self) -> Self::Output {
+        Vec3 {
+            x: -self.x,
+            y: -self.y,
+            z: -self.z,
         }
     }
 }
