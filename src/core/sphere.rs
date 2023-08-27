@@ -43,8 +43,9 @@ impl Hittable for Sphere {
         true
     }
 
-    fn set_face_normal(self, ray: &Ray, outward_noraml: &Vec3) {
-        let front_face = Vec3::dot_product(&ray.direction, outward_noraml) < 0;
-        let normal = if front_face { outward_noraml } else { - outward_noraml };
+    fn set_face_normal(self, ray: &Ray, outward_normal: &Vec3) {
+        let on = *outward_normal;
+        let front_face = Vec3::dot_product(&ray.direction, outward_normal) < 0.0;
+        let normal = if front_face { on } else { - on };
     }
 }
