@@ -19,7 +19,8 @@ fn main() {
     let focal_length = 1.0;
 
     let mut list: List = Vec::new();
-    list.push(Sphere::new(Vec3::new(0.0, 1.1, -2.7), 0.5));
+    list.push(Box::new(Sphere::new(Vec3::new(0.0, 0.0, -1.0), 0.5)));
+    list.push(Box::new(Sphere::new(Vec3::new(0.0, -100.5, -1.0), 100.0)));
     let world = HittableList::new(list);
 
     // println!("{} : {}", width, height);

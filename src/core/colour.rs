@@ -18,12 +18,10 @@ pub fn hit_sphere(center: &Vec3, radius: f32, ray: &Ray) -> f32 {
 }
 
 pub fn colour(ray: &Ray, world: &HittableList) -> Vec3 {
-    let mut record = HitRecord::default();
-
-    if world.hit(ray, 0.0, std::f32::MAX, &mut record) {
-        return Vec3::new(record.normal.x() + 1.0, record.normal.y() + 1.0, record.normal.z() + 1.0) * 0.5;
+    if let Some(rec) = world.hit(ray, 0.0, std::f32::MAX) {
+        return Vec3::new(rec.normal.x() + 1.0, rec.normal.y() + 1.0, rec.normal.z() + 1.0) * 0.5;
     } else {
-        let direction: Vec3 = ray.direction();
+        // let direction: Vec3 = ray.direction();
         let t =  hit_sphere(&Vec3::new(0.0, 0.0, -1.0), 0.5, ray);
 
         return Vec3::new(1.0, 1.0, 1.0) * (1.0 - t) + Vec3::new(0.5, 0.7, 1.0) * t;
