@@ -5,9 +5,38 @@ use super::ray::Ray;
 pub struct HitRecord {
     pub t: f32,
     pub p: Vec3,
-    pub normal: Vec3
+    pub normal: Vec3,
+    pub front_face: bool
 }
 
+pub type List = Vec<Box<dyn Hittable>>;
+
 pub trait Hittable {
-    fn hit(&self, ray: &Ray, tmin: f32, tmax: f32, rec: &mut HitRecord) -> bool ;
+    fn hit(&self, ray: &Ray, tmin: f32, tmax: f32) -> Option<HitRecord> ;
+}
+
+pub struct HittableList {
+    list: List,
+}
+
+impl HittableList {
+    pub fn new(list: List) -> Self {
+        Self { list }
+    }
+}
+
+impl Hittable for HittableList {
+    fn hit(&self, ray: &Ray, tmin: f32, tmax: f32) -> Option<HitRecord> {
+        let mut record: Option<HitRecord> = None;
+        let mut closest_so_far = tmax;
+
+         for object in &self.list {
+            if let Some(rec) =  object.hit(ray, tmin, closest_so_far) {
+                closest_so_far = rec.t;
+                record = Some(rec);
+            }
+        }
+
+        record
+    }
 }
