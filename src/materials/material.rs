@@ -21,16 +21,18 @@ pub trait Scatterable {
 }
 
 pub fn reflect(v: &Vec3, n: &Vec3) -> Vec3 {
-    *v - 2.0 * Vec3::dot_product(u, v)
+    *v - *n * (2.0 * Vec3::dot_product(v, n))
 }
 
 impl Scatterable for Material {
-    fn scatter(&self, ray_in: &Ray, hit_record: &HitRecord, attentuation: &mut Vec3, scattered: &mut Ray) -> bool {
+    fn scatter(&self, ray_in: &Ray, hit_record: &HitRecord, attenuation: &mut Vec3, scattered: &mut Ray) -> bool {
         match self {
             Material::Lambertian(lambertian) => {
-                lambertian.scatter(ray_in, hit_record, attentuation, scattered)
+                lambertian.scatter(ray_in, hit_record, attenuation, scattered)
             },
-            Material::Metal(_) => todo!(),
+            Material::Metal(metal) => {
+                metal.scatter(ray_in, hit_record, attenuation, scattered)
+            },
             Material::Dielectric(_) => todo!(),
         }
     }
