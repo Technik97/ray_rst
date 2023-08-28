@@ -2,13 +2,10 @@ use rand::Rng;
 use ray_tracer::core::hittable::{HittableList, List};
 use ray_tracer::core::sphere::Sphere;
 use ray_tracer::core::{vec3::Vec3, colour::colour};
+use ray_tracer::materials::material::Material;
 use ray_tracer::setup::camera::Camera;
-// use ray_tracer::configuration::get_configuration;
-
 
 fn main() {
-    // let config = get_configuration().expect("Couldn't read configuration");
-
     let aspect_ratio = 16.0 / 9.0;
 
     let width = 400;
@@ -18,10 +15,11 @@ fn main() {
     let mut rng = rand::thread_rng();
 
     let camera = Camera::new();
+    let material = Material::default();
 
     let mut list: List = Vec::new();
-    list.push(Box::new(Sphere::new(Vec3::new(0.0, 0.0, -1.0), 0.5)));
-    list.push(Box::new(Sphere::new(Vec3::new(0.0, -100.5, -1.0), 100.0)));
+    list.push(Box::new(Sphere::new(Vec3::new(0.0, 0.0, -1.0), 0.5, material)));
+    list.push(Box::new(Sphere::new(Vec3::new(0.0, -100.5, -1.0), 100.0, material)));
     let world = HittableList::new(list);
 
     // println!("{} : {}", width, height);
@@ -37,7 +35,7 @@ fn main() {
     
                 // let ray = Ray::new(origin, lower_left_corner + horizontal * u + vertical * v - origin);
                 let ray = camera.get_ray(u, v);
-                clr = clr + colour(&ray, &world);
+                clr = clr + colour(&ray, &world, 100);
             }
             // let b: f32 = 0.25;
             clr = clr / samples as f32;
