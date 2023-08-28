@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod test {
-    use ray_tracer::core::img::Image;
+    use ray_tracer::setup::img::Image;
 
     #[test]
     fn test_aspect_ratio() {

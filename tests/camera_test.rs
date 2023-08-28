@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod test {
-    use ray_tracer::core::camera::Camera;
+    use ray_tracer::setup::camera::Camera;
 
     #[test]
     fn test_origin() {
