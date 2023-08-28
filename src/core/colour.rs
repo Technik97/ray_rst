@@ -1,4 +1,4 @@
-use super::hittable::{HitRecord, HittableList, Hittable};
+use super::hittable::{HittableList, Hittable};
 use super::ray::Ray;
 use super::vec3::Vec3;
 
@@ -26,20 +26,4 @@ pub fn colour(ray: &Ray, world: &HittableList) -> Vec3 {
 
         return Vec3::new(1.0, 1.0, 1.0) * (1.0 - t) + Vec3::new(0.5, 0.7, 1.0) * t;
     }
-    
-    // let t =  hit_sphere(&Vec3::new(0.0, 0.0, -1.0), 0.5, ray);
-    
-    // if t > 0.0 {
-    //     let v = ray.point_at_parameter(t) - Vec3::new(0.0, 0.0, -1.0);
-    //     let N = v.unit_vector();
-    //     return Vec3::new(N.x() + 1.0, N.y() + 1.0, N.z() + 1.0) * 0.5;
-    // }
-
-    // let direction: Vec3 = ray.direction();
-    // let v = direction.unit_vector();
-    // let unit_direction = v.unit_vector();
-
-    // let t: f32 = 0.5 * (unit_direction.y() + 1.0);
-
-    // Vec3::new(1.0, 1.0, 1.0) * (1.0 - t) + Vec3::new(0.5, 0.7, 1.0) * t
 }
