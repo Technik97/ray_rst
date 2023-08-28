@@ -17,5 +17,5 @@ impl Default for Material {
 }
 
 pub trait Scatterable {
-    fn scatter(ray_in: &Ray, hit_record: HitRecord, attentuation: &mut Vec3, scattered: &mut Ray) -> bool;
+    fn scatter(&self, ray_in: &Ray, hit_record: HitRecord, attentuation: &mut Vec3, scattered: &mut Ray) -> bool;
 }
