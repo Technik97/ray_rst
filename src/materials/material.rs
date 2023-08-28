@@ -17,7 +17,11 @@ impl Default for Material {
 }
 
 pub trait Scatterable {
-    fn scatter(&self, ray_in: &Ray, hit_record: &HitRecord, attentuation: &mut Vec3, scattered: &mut Ray) -> bool;
+    fn scatter(&self, ray_in: &Ray, hit_record: &HitRecord, attenuation: &mut Vec3, scattered: &mut Ray) -> bool;
+}
+
+pub fn reflect(v: &Vec3, n: &Vec3) -> Vec3 {
+    *v - 2.0 * Vec3::dot_product(u, v)
 }
 
 impl Scatterable for Material {
