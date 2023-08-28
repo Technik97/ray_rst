@@ -17,5 +17,17 @@ impl Default for Material {
 }
 
 pub trait Scatterable {
-    fn scatter(&self, ray_in: &Ray, hit_record: HitRecord, attentuation: &mut Vec3, scattered: &mut Ray) -> bool;
+    fn scatter(&self, ray_in: &Ray, hit_record: &HitRecord, attentuation: &mut Vec3, scattered: &mut Ray) -> bool;
+}
+
+impl Scatterable for Material {
+    fn scatter(&self, ray_in: &Ray, hit_record: &HitRecord, attentuation: &mut Vec3, scattered: &mut Ray) -> bool {
+        match self {
+            Material::Lambertian(lambertian) => {
+                lambertian.scatter(ray_in, hit_record, attentuation, scattered)
+            },
+            Material::Metal(_) => todo!(),
+            Material::Dielectric(_) => todo!(),
+        }
+    }
 }
