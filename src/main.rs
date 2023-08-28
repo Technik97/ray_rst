@@ -42,6 +42,8 @@ fn main() {
             // let b: f32 = 0.25;
             clr = clr / samples as f32;
 
+            clr = Vec3::new(clr.x().sqrt(), clr.y().sqrt(), clr.z().sqrt());
+
             let ir = (255.99 * clr.x()) as i32;
             let ig = (255.99 * clr.y()) as i32;
             let ib = (255.99 * clr.z()) as i32;
