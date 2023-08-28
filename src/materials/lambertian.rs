@@ -14,7 +14,7 @@ impl Lambertian {
 }
 
 impl Scatterable for Lambertian {
-    fn scatter(&self, ray_in: &Ray, hit_record: &HitRecord, attentuation: &mut Vec3, scattered: &mut Ray) -> bool {
+    fn scatter(&self, _ray_in: &Ray, hit_record: &HitRecord, attentuation: &mut Vec3, scattered: &mut Ray) -> bool {
         let target = hit_record.p + hit_record.normal + random_in_unit_sphere();
         *scattered = Ray::new(hit_record.p, target - hit_record.p);
         *attentuation = self.albedo;
