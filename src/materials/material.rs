@@ -33,6 +33,13 @@ pub fn refract(uv: &Vec3, n: &Vec3, etai_over_etat: f32) -> Vec3 {
     r_out_perp + r_out_parallel
 }
 
+pub fn reflectance(cosine: f32, ref_idx: f32) -> f32 {
+    let mut r0 = (1.0 - ref_idx) / (1.0 + ref_idx);
+    r0 *= r0;
+
+    r0 + (1.0 - r0) * (1.0 - cosine).powi(5)
+}
+
 impl Scatterable for Material {
     fn scatter(&self, ray_in: &Ray, hit_record: &HitRecord, attenuation: &mut Vec3, scattered: &mut Ray) -> bool {
         match self {
