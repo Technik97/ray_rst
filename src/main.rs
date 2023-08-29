@@ -1,3 +1,4 @@
+use palette::Srgb;
 use rand::Rng;
 use ray_tracer::core::hittable::{HittableList, List};
 use ray_tracer::core::sphere::Sphere;
@@ -36,7 +37,7 @@ fn main() {
 
     for j in (0..height as i32).rev() {
         for i in 0..width {
-            let mut clr = Vec3::default();
+            let mut clr = Srgb::default();
 
             for _ in 0..samples {
                 let u = (i as f32 + rng.gen::<f32>()) / width as f32;
@@ -49,11 +50,11 @@ fn main() {
             // let b: f32 = 0.25;
             clr = clr / samples as f32;
 
-            clr = Vec3::new(clr.x().sqrt(), clr.y().sqrt(), clr.z().sqrt());
+            clr = Srgb::new(clr.red.sqrt(), clr.green.sqrt(), clr.blue.sqrt());
 
-            let ir = (255.99 * clr.x()) as i32;
-            let ig = (255.99 * clr.y()) as i32;
-            let ib = (255.99 * clr.z()) as i32;
+            let ir = (255.99 * clr.red) as i32;
+            let ig = (255.99 * clr.green) as i32;
+            let ib = (255.99 * clr.blue) as i32;
 
             println!("{} {} {}", ir, ig, ib);
         }
