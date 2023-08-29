@@ -1,6 +1,7 @@
+use rand::Rng;
 use crate::core::{ray::Ray, hittable::HitRecord, vec3::Vec3};
 
-use super::material::{Scatterable, refract, reflect};
+use super::material::{Scatterable, refract, reflect, reflectance};
 
 #[derive(Debug, Clone, Copy)]
 pub struct Dielectric {
@@ -16,6 +17,7 @@ impl Dielectric {
 impl Scatterable for Dielectric {
     fn scatter(&self, ray_in: &Ray, hit_record: &HitRecord, attenuation: &mut Vec3, scattered: &mut Ray) -> bool {
         *attenuation = Vec3::new(1.0, 1.0, 1.0);
+        let mut rng = rand::thread_rng();
         let refraction_ratio = if hit_record.front_face {
             1.0 / self.ir
         } else {
@@ -29,7 +31,7 @@ impl Scatterable for Dielectric {
         let cannot_refract = refraction_ratio * sin_theta > 1.0;
         let mut direction = Vec3::default();
 
-        if cannot_refract {
+        if cannot_refract || reflectance(cos_theta, refraction_ratio) > rng.gen::<f32>() {
             direction = reflect(&unit_direction, &hit_record.normal);
         } else {
             direction = refract(&unit_direction, &hit_record.normal, refraction_ratio);
