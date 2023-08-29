@@ -1,3 +1,5 @@
+use crate::materials::material::Material;
+
 use super::vec3::Vec3;
 use super::ray::Ray;
 
@@ -6,7 +8,8 @@ pub struct HitRecord {
     pub t: f32,
     pub p: Vec3,
     pub normal: Vec3,
-    pub front_face: bool
+    pub front_face: bool,
+    pub material: Material
 }
 
 pub type List = Vec<Box<dyn Hittable>>;

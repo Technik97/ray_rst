@@ -1,5 +1,6 @@
-use super::{vec3::Vec3, img::Image};
-use crate::configuration;
+use super::img::Image;
+use crate::core::vec3::Vec3;
+use crate::{configuration, core::ray::Ray};
 
 #[derive(Debug)]
 pub struct Camera {
@@ -58,6 +59,13 @@ impl Camera {
         let vertical = Self::vertical();
 
         origin - (horizontal / 2.0) - (vertical / 2.0) - Vec3 { x: 0.0, y: 0.0, z: focal_length }
+    }
+
+    pub fn get_ray(&self, u: f32, v: f32) -> Ray {
+        Ray::new(
+            self.origin, 
+            self.lower_left_corner + self.horizontal * u + self.vertical * v - self.origin
+        )
     }
 
     pub fn new() -> Self {

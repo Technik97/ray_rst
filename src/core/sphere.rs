@@ -1,3 +1,5 @@
+use crate::materials::material::Material;
+
 use super::vec3::Vec3;
 use super::ray::Ray;
 use super::hittable::*;
@@ -5,11 +7,12 @@ use super::hittable::*;
 pub struct Sphere {
     pub center: Vec3,
     pub radius: f32,
+    pub material: Material
 }
 
 impl Sphere {
-    pub fn new(center: Vec3, radius: f32) -> Self {
-        Self { center, radius }
+    pub fn new(center: Vec3, radius: f32, material: Material) -> Self {
+        Self { center, radius, material }
     }
 }
 
@@ -32,7 +35,8 @@ impl Hittable for Sphere {
                     t: temp, 
                     p: ray.point_at_parameter(temp), 
                     normal: if front_face { normal } else { -normal }, 
-                    front_face
+                    front_face,
+                    material: self.material
                 });
             }
         }
