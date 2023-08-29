@@ -18,7 +18,7 @@ mod test {
 
         let dot_product: f32 = Vec3::dot_product(&u, &v);
 
-        assert_eq!(dot_product, 23.0);
+        assert_eq!(dot_product, 32.0);
     }
 
     #[test]
