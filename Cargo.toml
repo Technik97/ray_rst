@@ -14,5 +14,6 @@ name = "ray_tracer"
 
 [dependencies]
 config = "0.13.3"
+palette = "0.7.3"
 rand = "0.8.5"
 serde = "1.0.164"
